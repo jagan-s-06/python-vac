@@ -1,4 +1,4 @@
-<p align="center"><img src="https://via.placeholder.com/250x250.png?text=Your+Logo+Here"></p>
+<p align="center"><img src="https://via.placeholder.com/250x250.png?text=Python+Project+Logo"></p>
 
 <p align="center">
     <a href="https://twitter.com/yourusername">
@@ -16,11 +16,11 @@
 
 <p align="center">
   <br>
-  <b>Powered By</b>
+  <b>Built With</b>
   <br>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white">
-  <img src="https://img.shields.io/badge/SMTP-005571?style=for-the-badge&logo=minutemailer&logoColor=white">
+  <img src="https://img.shields.io/badge/CLI-000000?style=for-the-badge&logo=gnometerminal&logoColor=white">
+  <img src="https://img.shields.io/badge/Automation-4B0082?style=for-the-badge&logo=dependabot&logoColor=white">
 </p>
 
 <p>
@@ -35,119 +35,91 @@
   </a>
 </p>
 
-Concept behind this project is simple, provide a seamless web interface using Flask to handle incoming user data, and standard SMTP to route that data as email notifications. Read more on <a href="https://yourwebsite.com"> Your Blog </a>. This Hosts a web server which processes web forms and if the target submits it, we can get:
+Concept behind this project is simple, provide a robust Command Line Interface (CLI) written purely in Python to automate complex local tasks, parse data streams, and streamline system interactions. Read more on <a href="https://yourwebsite.com"> Your Blog </a>. Once the script is executed, it can automatically gather and process:
 
-* Form Fields
-* Browser Name and Version
-* Public IP Address
-* Time of Submission
+* System Environment Variables
+* Local Network Configurations
+* File System and Directory Trees
+* CPU and Memory Utilization
 
-Along with form data we also get **Automated Email Delivery** without complex APIs:
+Along with data processing, we also get **Automated Execution Features**:
 
-* Lightweight Web Server
-* Automated SMTP Delivery via Python's native `smtplib`
-* Dynamic HTML Templates using Jinja2
-* Environment Variable Protection via `.env` files
+* Multi-threaded task handling
+* Cross-platform compatibility (Windows/Linux/macOS)
+* Detailed logging and JSON output generation
+* Configurable execution via command-line arguments
 
-**This tool is a Proof of Concept and is for Educational Purposes Only. It shows how data flows from a web interface to an inbox.**
+**This tool is designed to showcase the power of Python for system administration and automation tasks.**
 
 ## Architecture & Algorithm Logic
 
-Here is a visual representation of how the data flows from the client to the inbox:
+Here is a visual representation of how the logic flows during script execution:
 
 ```text
-[ Web Client ] 
+[ User CLI Input ] 
       │
-      ▼ (HTTP POST)
+      ▼ (Argparse / Sys Args)
 ┌──────────────────────────────────────────┐
-│              FLASK SERVER                │
-│  1. Route Intercepts Request             │
-│  2. Validates Form Data                  │
-│  3. Renders Jinja2 Email Template        │
+│              PYTHON ENGINE               │
+│  1. Parse Arguments & Validate           │
+│  2. Initialize Worker Threads            │
+│  3. Execute Automation / File I/O        │
 └────────────────────┬─────────────────────┘
                      │
-                     ▼ (SMTP Auth / STARTTLS)
-            [ SMTP Mail Server ]
+                     ▼ (Data Processing)
+            [ Local System / API ]
                      │
                      ▼
-           [ Recipient's Inbox ]
-```
+           [ Log Output / JSON Report ]
 
-## Tested On :
 
-* Kali Linux
-* BlackArch Linux
-* Ubuntu
-* Fedora
-* Windows 10/11
-* OSX - Monterey v.12.0.1
 
-## Installation
-
-### Standard Setup
-
-```bash
+Installation
+Standard Setup
+Bash
 git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
 cd your-repo-name/
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-```
+Virtual Environment (Windows)
+DOS
+git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
+cd your-repo-name\
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+Usage
+You can configure the tool using environment variables or by passing direct command-line arguments.
 
-### Docker
+Bash
+python3 main.py -h
 
-```bash
-docker pull yourusername/flask-smtp
-```
-
-## Usage
-
-Create a `.env` file in the root directory and add your email settings:
-
-```bash
-FLASK_APP=app.py
-FLASK_ENV=development
-FLASK_PORT=5000
-
-# SMTP Settings
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=587
-SMTP_EMAIL=your-email@example.com
-SMTP_PASSWORD=your-app-password
-```
-
-```bash
-python3 app.py -h
-
-usage: app.py [-h] [-p PORT] [-d]
+usage: main.py [-h] [-i INPUT] [-o OUTPUT] [-v] [-t THREADS]
 
 options:
   -h, --help                            show this help message and exit
-  -p PORT, --port PORT                  Web server port [ Default : 5000 ]
-  -d, --debug                           Enable Flask debug mode 
+  -i INPUT, --input INPUT               Specify the input target or directory
+  -o OUTPUT, --output OUTPUT            Specify the output JSON/Log file name
+  -v, --verbose                         Enable verbose logging output
+  -t THREADS, --threads THREADS         Number of concurrent threads [ Default : 4 ]
 
 ##################
 # Usage Examples #
 ##################
 
-# Step 1 : In first terminal
-$ python3 app.py
+# Basic Execution
+$ python3 main.py -i data_folder/
 
-# Step 2 : In second terminal start a tunnel service such as ngrok
-$ ./ngrok http 5000
-```
+# Advanced Execution with custom threads and verbose logging
+$ python3 main.py -i target_file.txt -o results.json -v -t 10
+Environment Variables
+Some of the options above can also be enabled via environment variables to ease deployment in automated CI/CD pipelines.
 
-## Local Tunnels
-Use
-```
-ssh -R 80:localhost:5000 nokey@localhost.run
-```
-as an alterntive to ngrok
+Variables:
+INPUT_TARGET        Same as -i, --input
+OUTPUT_FILE         Same as -o, --output
+MAX_THREADS         Same as -t, --threads
 
-## Demo
-
-**YouTube**
-
-<a href="https://youtube.com/your-video-link">
-  <img src="https://via.placeholder.com/800x450.png?text=Click+to+Watch+Demo+Video">
-</a>
+Demo
+YouTube
